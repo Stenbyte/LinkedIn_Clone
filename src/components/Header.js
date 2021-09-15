@@ -152,6 +152,7 @@ const Nav = styled.nav`
     bottom: 0;
     background: white;
     width: 100%;
+    overflow-x: scroll;
   }
 `;
 
@@ -177,6 +178,7 @@ const NavListWrap = styled.ul`
 const NavList = styled.li`
   display: flex;
   align-items: center;
+  position: relative;
   a {
     align-items: center;
     background: transparent;
@@ -213,6 +215,7 @@ const SignOut = styled.div`
   position: absolute;
   top: 45px;
   background: white;
+  color: crimson;
   border-radius: 0 0 5px 5px;
   width: 100px;
   height: 40px;
@@ -220,6 +223,9 @@ const SignOut = styled.div`
   transition-duration: 167ms;
   text-align: center;
   display: none;
+  @media (max-width: 768px) {
+    top: -10px;
+  }
 `;
 
 const User = styled(NavList)`
