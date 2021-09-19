@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import ReactPlayer from "react-player";
+import { connect } from "react-redux";
+import firebase from "firebase";
+import { postArticleApi } from "../actions";
 
 import React, { useState, Fragment } from "react";
 
-export default function PostModal(props) {
+function PostModal(props) {
   const [editorText, setEditorText] = useState("");
   const [shareImage, setShareImage] = useState("");
   const [videoLink, setVideoLink] = useState("");
@@ -22,6 +25,22 @@ export default function PostModal(props) {
     setShareImage("");
     setVideoLink("");
     setAssetArea(area);
+  };
+
+  const postArticle = (e) => {
+    e.preventDefault();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    const payload = {
+      image: shareImage,
+      video: videoLink,
+      user: props.user,
+      description: editorText,
+      timestamp: firebase.firestore.Timestamp.now(),
+    };
+    props.postArticle(payload);
+    reset(e);
   };
 
   const reset = (e) => {
@@ -46,8 +65,13 @@ export default function PostModal(props) {
             </Header>
             <SharedContent>
               <UserInfo>
-                <img src="/images/user.svg" alt="" />
-                <span>Name</span>
+                {props.user.photoURL ? (
+                  <img src={props.user.photoURL} alt="" />
+                ) : (
+                  <img src="/images/user.svg" alt="" />
+                )}
+
+                <span>{props.user.displayName}</span>
               </UserInfo>
               <Editor>
                 <textarea
@@ -105,7 +129,10 @@ export default function PostModal(props) {
                   Comment
                 </AssetButton>
               </ShareComment>
-              <PostButton disabled={!editorText ? true : false}>
+              <PostButton
+                disabled={!editorText ? true : false}
+                onClick={(e) => postArticle(e)}
+              >
                 Post
               </PostButton>
             </ShareCreation>
@@ -254,3 +281,15 @@ const UploadImage = styled.div`
     }
   }
 `;
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  postArticle: (payload) => dispatch(postArticleApi(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostModal);
