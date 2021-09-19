@@ -303,9 +303,12 @@ const SocialCounts = styled.ul`
     font-size: 12px;
     button {
       display: flex;
+      border: none;
+      background-color: white;
       img {
         width: 20px;
         height: 20px;
+        margin-right: 5px;
       }
     }
   }

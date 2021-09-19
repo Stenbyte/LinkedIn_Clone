@@ -52,7 +52,12 @@ const Nav = styled.nav`
     height: 34px;
     @media (max-width: 768px) {
       padding: 0 5px;
+      flex-wrap: wrap;
     }
+  }
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    height: 90px;
   }
 `;
 const Join = styled.a`
@@ -83,6 +88,8 @@ const SignIn = styled.a`
     background-color: rgba(112, 181, 249, 0.15);
     color: #0a66c2;
     text-decoration: none;
+    @media (max-width: 768px) {
+    }
   }
 `;
 const Section = styled.section`
