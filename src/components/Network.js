@@ -66,8 +66,17 @@ export default function Network() {
       </Leftside>
       <RightSide>
         <RightBar>No pending invitations</RightBar>
+        <h1>People you may know</h1>
         <RightCont>
-          <h1>People you may know</h1>
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
+          <PeopleN />
           <PeopleN />
         </RightCont>
       </RightSide>
@@ -122,8 +131,12 @@ const RightBar = styled.div`
 const RightCont = styled.div`
   border-radius: 10px;
   background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   min-height: 90vh;
   padding: 1rem;
+  /* width: 60vw; */
 `;
 const Button = styled.button`
   display: flex;
