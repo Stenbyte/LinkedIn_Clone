@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import { getUserAuth } from "./actions";
 import { connect } from "react-redux";
+import Network from "./components/Network";
+import Menu from "./components/Menu";
 
 function App(props) {
   useEffect(() => {
@@ -18,10 +20,17 @@ function App(props) {
           <Route exact path="/">
             <Login />
           </Route>
-          <Route exact path="/home">
+          {/* <Route path="/home">
             <Header />
-            <Home />
-          </Route>
+            <Menu />
+          </Route> */}
+          <Header />
+          <Home />
+          {/* <Route exact path="/home">
+          </Route> */}
+          {/* <Route exact path="/network">
+            <Network />
+          </Route> */}
         </Switch>
       </Router>
     </div>

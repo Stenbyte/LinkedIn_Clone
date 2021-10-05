@@ -1,92 +1,136 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { getUserAuth } from "../actions";
 import { signOutApi } from "../actions";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import Network from "./Network";
+import Home from "./Home";
+import Notifications from "./Notifications";
+import Message from "./Message";
+import Jobs from "./Jobs";
 function Header(props) {
+  useEffect(() => {
+    props.getUserAuth();
+  }, []);
   return (
-    <Container>
-      <Content>
-        <Logo>
-          <a href="/home">
-            <img src="/images/home-logo.svg" alt="" />
-          </a>
-        </Logo>
-        <Search>
-          <div>
-            <input type="text" placeholder="Search" />
-          </div>
-          <SearchIcon>
-            <img src="/images/search-icon.svg" alt="" />
-          </SearchIcon>
-        </Search>
-        <Nav>
-          <NavListWrap>
-            <NavList className="active">
-              <a>
-                <img src="/images/nav-home.svg" alt="" />
-                <span>Home</span>
-              </a>
-            </NavList>
+    <Router>
+      <Container>
+        <Content>
+          <Logo>
+            <a href="/home">
+              <img src="/images/home-logo.svg" alt="" />
+            </a>
+          </Logo>
+          <Search>
+            <div>
+              <input type="text" placeholder="Search" />
+            </div>
+            <SearchIcon>
+              <img src="/images/search-icon.svg" alt="" />
+            </SearchIcon>
+          </Search>
+          <Nav>
+            <NavListWrap>
+              <NavList>
+                <NavLink to="/home">
+                  <a>
+                    <img src="/images/nav-home.svg" alt="" />
+                    <span>Home</span>
+                  </a>
+                </NavLink>
+              </NavList>
 
-            <NavList>
-              <a>
-                <img src="/images/nav-network.svg" alt="" />
-                <span>My Network</span>
-              </a>
-            </NavList>
+              <NavList>
+                <NavLink to="/network">
+                  <a>
+                    <img src="/images/nav-network.svg" alt="" />
+                    <span>My Network</span>
+                  </a>
+                </NavLink>
+              </NavList>
 
-            <NavList>
-              <a>
-                <img src="/images/nav-jobs.svg" alt="" />
-                <span>Jobs</span>
-              </a>
-            </NavList>
+              <NavList>
+                <NavLink to="/jobs">
+                  <a>
+                    <img src="/images/nav-jobs.svg" alt="" />
+                    <span>Jobs</span>
+                  </a>
+                </NavLink>
+              </NavList>
 
-            <NavList>
-              <a>
-                <img src="/images/nav-messaging.svg" alt="" />
-                <span>Messaging</span>
-              </a>
-            </NavList>
+              <NavList>
+                <NavLink to="/message">
+                  <a>
+                    <img src="/images/nav-messaging.svg" alt="" />
+                    <span>Messaging</span>
+                  </a>
+                </NavLink>
+              </NavList>
 
-            <NavList>
-              <a>
-                <img src="/images/nav-notifications.svg" alt="" />
-                <span>Notifications</span>
-              </a>
-            </NavList>
+              <NavList>
+                <NavLink to="/notifications">
+                  <a>
+                    <img src="/images/nav-notifications.svg" alt="" />
+                    <span>Notifications</span>
+                  </a>
+                </NavLink>
+              </NavList>
 
-            <User>
-              <a>
-                {props.user && props.user.photoURL ? (
-                  <img src={props.user.photoURL} />
-                ) : (
-                  <img src="/images/user.svg" alt="" />
-                )}
-                <span>
-                  Me
-                  <img src="/images/down-icon.svg" alt="" />
-                </span>
-              </a>
+              <User>
+                <a>
+                  {props.user && props.user.photoURL ? (
+                    <img src={props.user.photoURL} />
+                  ) : (
+                    <img src="/images/user.svg" alt="" />
+                  )}
+                  <span>
+                    Me
+                    <img src="/images/down-icon.svg" alt="" />
+                  </span>
+                </a>
 
-              <SignOut onClick={() => props.signOut()}>
-                <a>Sign Out</a>
-              </SignOut>
-            </User>
+                <SignOut onClick={() => props.signOut()}>
+                  <a>Sign Out</a>
+                </SignOut>
+              </User>
 
-            <Work>
-              <a>
-                <img src="/images/nav-work.svg" alt="" />
-                <span>
-                  Work
-                  <img src="/images/down-icon.svg" alt="" />
-                </span>
-              </a>
-            </Work>
-          </NavListWrap>
-        </Nav>
-      </Content>
-    </Container>
+              <Work>
+                <a>
+                  <img src="/images/nav-work.svg" alt="" />
+                  <span>
+                    Work
+                    <img src="/images/down-icon.svg" alt="" />
+                  </span>
+                </a>
+              </Work>
+            </NavListWrap>
+          </Nav>
+        </Content>
+      </Container>
+      <Switch>
+        <Route exact path="/home">
+          <Home />
+        </Route>
+        <Route exact path="/network">
+          <Network />
+        </Route>
+        <Route exact path="/jobs">
+          <Jobs />
+        </Route>
+        <Route exact path="/message">
+          <Message />
+        </Route>
+        <Route exact path="/notifications">
+          <Notifications />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 const Container = styled.div`
@@ -269,6 +313,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOutApi()),
+  getUserAuth: () => dispatch(getUserAuth()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
