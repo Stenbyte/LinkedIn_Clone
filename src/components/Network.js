@@ -66,25 +66,26 @@ export default function Network() {
       </Leftside>
       <RightSide>
         <RightBar>No pending invitations</RightBar>
-        <h1>People you may know</h1>
-        <RightCont>
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-          <PeopleN />
-        </RightCont>
+        <div style={{ backgroundColor: "white", padding: "1rem" }}>
+          <h1>People you may know</h1>
+          <RightCont>
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+            <PeopleN />
+          </RightCont>
+        </div>
       </RightSide>
     </Container>
   );
 }
 const Container = styled.div`
-  margin-top: 7rem;
+  margin-top: 5rem;
   display: flex;
   height: 90vh;
   padding: 2rem;
@@ -112,7 +113,7 @@ const Leftside = styled.div`
       color: grey;
       width: 60px;
       text-align: left;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 `;
@@ -135,7 +136,7 @@ const RightCont = styled.div`
   justify-content: space-evenly;
   flex-wrap: wrap;
   min-height: 90vh;
-  padding: 1rem;
+
   /* width: 60vw; */
 `;
 const Button = styled.button`

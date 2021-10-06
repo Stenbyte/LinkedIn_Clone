@@ -50,7 +50,7 @@ const Profile = styled.div`
 `;
 const Description = styled.div``;
 const Button = styled.button`
-  width: 100px;
+  width: 200px;
   height: 40px;
   border-radius: 10px;
   border: 1px solid rgba(0, 20, 90, 0.8);
