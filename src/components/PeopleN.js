@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Network as data } from "../data";
+export default function PeopleN({ data }) {
+  const [btn, setBtn] = useState("Co");
+  const [btnId, setBtnId] = useState();
+  const btnHandler = () => {
+    console.log();
+  };
 
-export default function PeopleN() {
   return (
-    <Container>
-      <ImgContainer>
-        <img src="/images/card-bg.svg" alt="" className="sizze" />
-        <img src="/images/user.svg" alt="" className="sizze1" />
-      </ImgContainer>
-      <Profile>
-        <h3>Sten Scheifel</h3>
-        <h4>Frontend Developer</h4>
-        <span>Company A</span>
-      </Profile>
-      <Button>Connect</Button>
-    </Container>
+    <React.Fragment>
+      {data.map((n) => (
+        <Container key={n.id}>
+          <ImgContainer>
+            <img src={n.backImg} alt="" className="sizze" />
+            <img src={n.proImg} alt="" className="sizze1" />
+          </ImgContainer>
+          <Profile>
+            <h3>{n.name} </h3>
+            <h4>{n.role} Developer</h4>
+            <span>{n.company} </span>
+          </Profile>
+          <Button type="button">{n.con}</Button>
+        </Container>
+      ))}
+    </React.Fragment>
   );
 }
 const Container = styled.div`
@@ -57,4 +67,7 @@ const Button = styled.button`
   background-color: white;
   margin: 0 auto;
   margin-bottom: 20px;
+  &:hover {
+    background-color: rgba(0, 0, 200, 0.1);
+  }
 `;
