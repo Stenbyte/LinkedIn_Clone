@@ -4,9 +4,11 @@ import PeopleN from "./PeopleN";
 import { Network as data } from "../data";
 export default function Network() {
   const [open, setOpen] = useState(true);
+
   const openHandler = () => {
     setOpen(!open);
   };
+
   return (
     <Container>
       <Leftside>
@@ -69,7 +71,9 @@ export default function Network() {
         <div style={{ backgroundColor: "white", padding: "1rem" }}>
           <h1>People you may know</h1>
           <RightCont>
-            <PeopleN data={data} />
+            {data.map((el) => (
+              <PeopleN el={el} />
+            ))}
           </RightCont>
         </div>
       </RightSide>

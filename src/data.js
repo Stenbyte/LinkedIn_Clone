@@ -32,7 +32,7 @@ export const Network = [
     company: "CompanyA",
     backImg: "https://source.unsplash.com/160x90/?nature,water",
     proImg: "https://source.unsplash.com/160x160/?women,face",
-    con: "Connected",
+    con: "Connect",
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ export const Network = [
     company: "CompanyB",
     backImg: "https://source.unsplash.com/160x90/?nature,fire",
     proImg: "https://source.unsplash.com/160x160/?women,face",
-    con: "Connected",
+    con: "Connect",
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ export const Network = [
     company: "CompanyC",
     backImg: "https://source.unsplash.com/160x90/?nature,forest",
     proImg: "https://source.unsplash.com/160x160/?people,face",
-    con: "Connected",
+    con: "Connect",
   },
   {
     id: 4,

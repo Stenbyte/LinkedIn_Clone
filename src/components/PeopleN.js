@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Network as data } from "../data";
-export default function PeopleN({ data }) {
-  const [btn, setBtn] = useState("Co");
-  const [btnId, setBtnId] = useState();
+
+export default function PeopleN({ el }) {
+  const [btn, setBtn] = useState(el.con);
+
   const btnHandler = () => {
-    console.log();
+    btn === "Connect" ? setBtn("Connected") : setBtn("Connect");
   };
 
   return (
     <React.Fragment>
-      {data.map((n) => (
-        <Container key={n.id}>
-          <ImgContainer>
-            <img src={n.backImg} alt="" className="sizze" />
-            <img src={n.proImg} alt="" className="sizze1" />
-          </ImgContainer>
-          <Profile>
-            <h3>{n.name} </h3>
-            <h4>{n.role} Developer</h4>
-            <span>{n.company} </span>
-          </Profile>
-          <Button type="button">{n.con}</Button>
-        </Container>
-      ))}
+      <Container key={el.id}>
+        <ImgContainer>
+          <img src={el.backImg} alt="" className="sizze" />
+          <img src={el.proImg} alt="" className="sizze1" />
+        </ImgContainer>
+        <Profile>
+          <h3>{el.name} </h3>
+          <h4>{el.role} Developer</h4>
+          <span>{el.company} </span>
+        </Profile>
+        <Button
+          onClick={btnHandler}
+          type="button"
+          style={{
+            backgroundColor: btn === "Connected" ? "#9575cd" : "white",
+            color: btn === "Connected" ? "#FFFCFF" : "black",
+          }}
+        >
+          {btn}
+        </Button>
+      </Container>
     </React.Fragment>
   );
 }
@@ -66,6 +73,7 @@ const Button = styled.button`
   border: 1px solid rgba(0, 20, 90, 0.8);
   background-color: white;
   margin: 0 auto;
+  font-size: 17px;
   margin-bottom: 20px;
   &:hover {
     background-color: rgba(0, 0, 200, 0.1);

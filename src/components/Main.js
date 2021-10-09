@@ -9,6 +9,7 @@ function Main(props) {
 
   useEffect(() => {
     props.getArticles();
+    console.log(props.articles);
   }, []);
 
   const handleClick = (e) => {
