@@ -3,42 +3,35 @@ import React, { useEffect } from "react";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./components/Home";
 import { getUserAuth } from "./actions";
 import { connect } from "react-redux";
-import Network from "./components/Network";
-import Menu from "./components/Menu";
+import { Redirect } from "react-router-dom";
 
 function App(props) {
   useEffect(() => {
     props.getUserAuth();
   }, []);
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <Switch>
           <Route exact path="/">
             <Login />
           </Route>
-          {/* <Route path="/home">
-            <Header />
-            <Menu />
-          </Route> */}
+          {!props.user && <Redirect to="/" />}
           <Header />
-          <Home />
-          {/* <Route exact path="/home">
-          </Route> */}
-          {/* <Route exact path="/network">
-            <Network />
-          </Route> */}
+
+          {/* <Route exact path="/home"></Route> */}
         </Switch>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    user: state.userState.user,
+  };
 };
 const mapDispatchToProps = (dispatch) => ({
   getUserAuth: () => dispatch(getUserAuth()),

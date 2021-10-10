@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Notification as data } from "../data";
-
-export default function Notifications(props) {
-  console.log(data);
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import NotificationList from "./NotificationList";
+function Notifications(props) {
   return (
     <Container>
+      {!props.user && <Redirect to="/" />}
       <Leftside>
         <Box1>
           <h4>Notifications</h4>
@@ -18,25 +20,26 @@ export default function Notifications(props) {
       </Leftside>
       <Main>
         {data.map((n) => (
-          <Main1
-            style={{
-              backgroundColor: n.color ? "#50ad2" : "white",
-            }}
-          >
-            <img src="images/logo.png" alt="" />
-            <div>
-              <p className="para">
-                <span style={{ fontWeight: 600 }}>{n.name}</span> is promoting a
-                high priority <span style={{ fontWeight: 600 }}>{n.role}</span>{" "}
-                developer
-              </p>
-              <Button>Apply early</Button>
-            </div>
-            <MainBox>
-              <p>{n.time}</p>
-              <img src="images/elipsis.png" alt="" />
-            </MainBox>
-          </Main1>
+          <NotificationList n={n} key={n.id} />
+          // <Main1
+          //   style={{
+          //     backgroundColor: n.color ? "#50ad2" : "white",
+          //   }}
+          // >
+          //   <img src="images/logo.png" alt="" />
+          //   <div>
+          //     <p className="para">
+          //       <span style={{ fontWeight: 600 }}>{n.name}</span> is promoting a
+          //       high priority <span style={{ fontWeight: 600 }}>{n.role}</span>{" "}
+          //       developer
+          //     </p>
+          //     <Button onClick={clickHandler}>Apply early {click}</Button>
+          //   </div>
+          //   <MainBox>
+          //     <p>{n.time}</p>
+          //     <img src="images/elipsis.png" alt="" />
+          //   </MainBox>
+          // </Main1>
         ))}
       </Main>
 
@@ -143,3 +146,13 @@ const MainBox = styled.div`
     /* margin-left: 0.5rem; */
   }
 `;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+// const mapDispatchToProps = (dispatch) => ({
+//   signOut: () => dispatch(signOutApi()),
+// });
+
+export default connect(mapStateToProps)(Notifications);

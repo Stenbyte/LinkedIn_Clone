@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { getUserAuth } from "../actions";
 import { signOutApi } from "../actions";
+import { Redirect } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,11 +16,9 @@ import Notifications from "./Notifications";
 import Message from "./Message";
 import Jobs from "./Jobs";
 function Header(props) {
-  useEffect(() => {
-    props.getUserAuth();
-  }, []);
   return (
     <Router>
+      {!props.user && <Redirect to="/" />}
       <Container>
         <Content>
           <Logo>
@@ -37,50 +36,50 @@ function Header(props) {
           </Search>
           <Nav>
             <NavListWrap>
-              <NavList>
-                <NavLink to="/home">
+              <NavLink to="/home" style={{ textDecoration: "none" }}>
+                <NavList>
                   <a>
                     <img src="/images/nav-home.svg" alt="" />
                     <span>Home</span>
                   </a>
-                </NavLink>
-              </NavList>
+                </NavList>
+              </NavLink>
 
-              <NavList>
-                <NavLink to="/network">
+              <NavLink to="/network" style={{ textDecoration: "none" }}>
+                <NavList>
                   <a>
                     <img src="/images/nav-network.svg" alt="" />
                     <span>My Network</span>
                   </a>
-                </NavLink>
-              </NavList>
+                </NavList>
+              </NavLink>
 
-              <NavList>
-                <NavLink to="/jobs">
+              <NavLink to="/jobs" style={{ textDecoration: "none" }}>
+                <NavList>
                   <a>
                     <img src="/images/nav-jobs.svg" alt="" />
                     <span>Jobs</span>
                   </a>
-                </NavLink>
-              </NavList>
+                </NavList>
+              </NavLink>
 
-              <NavList>
-                <NavLink to="/message">
+              <NavLink to="/message" style={{ textDecoration: "none" }}>
+                <NavList>
                   <a>
                     <img src="/images/nav-messaging.svg" alt="" />
                     <span>Messaging</span>
                   </a>
-                </NavLink>
-              </NavList>
+                </NavList>
+              </NavLink>
 
-              <NavList>
-                <NavLink to="/notifications">
+              <NavLink to="/notifications" style={{ textDecoration: "none" }}>
+                <NavList>
                   <a>
                     <img src="/images/nav-notifications.svg" alt="" />
                     <span>Notifications</span>
                   </a>
-                </NavLink>
-              </NavList>
+                </NavList>
+              </NavLink>
 
               <User>
                 <a>
@@ -212,6 +211,7 @@ const NavListWrap = styled.ul`
   display: flex;
   flex-wrap: nowrap;
   list-style-type: none;
+
   .active {
     span:after {
       content: "";
@@ -244,6 +244,7 @@ const NavList = styled.li`
     min-width: 80px;
     position: relative;
     text-decoration: none;
+
     span {
       color: rgba(0, 0, 0, 0.6);
       display: flex;
@@ -313,7 +314,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOutApi()),
-  getUserAuth: () => dispatch(getUserAuth()),
+  // getUserAuth: () => dispatch(getUserAuth()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

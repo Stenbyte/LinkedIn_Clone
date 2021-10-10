@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PeopleN from "./PeopleN";
 import { Network as data } from "../data";
-export default function Network() {
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+function Network(props) {
   const [open, setOpen] = useState(true);
 
   const openHandler = () => {
@@ -11,6 +13,7 @@ export default function Network() {
 
   return (
     <Container>
+      {!props.user && <Redirect to="/" />}
       <Leftside>
         <a>
           <img src="/images/nav-network.svg" alt="" />
@@ -72,7 +75,7 @@ export default function Network() {
           <h1>People you may know</h1>
           <RightCont>
             {data.map((el) => (
-              <PeopleN el={el} />
+              <PeopleN el={el} key={el.id} />
             ))}
           </RightCont>
         </div>
@@ -149,3 +152,13 @@ const Button = styled.button`
   }
 `;
 const Body = styled.div``;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+// const mapDispatchToProps = (dispatch) => ({
+//   signOut: () => dispatch(signOutApi()),
+// });
+
+export default connect(mapStateToProps)(Network);

@@ -94,7 +94,7 @@ function PostModal(props) {
                       <label htmlFor="file">Select image</label>
                     </p>
                     {shareImage && (
-                      <img src={URL.createObjectURL(shareImage)} />
+                      <img src={URL.createObjectURL(shareImage)} alt="" />
                     )}
                   </UploadImage>
                 ) : (

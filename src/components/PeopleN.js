@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 export default function PeopleN({ el }) {
@@ -65,7 +65,7 @@ const ImgContainer = styled.div`
 const Profile = styled.div`
   text-align: center;
 `;
-const Description = styled.div``;
+// const Description = styled.div``;
 const Button = styled.button`
   width: 200px;
   height: 40px;

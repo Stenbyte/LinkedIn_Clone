@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-export default function Message() {
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+function Message(props) {
   return (
     <React.Fragment>
       <Container>
+        {!props.user && <Redirect to="/" />}
         <Box>
           <h1>
             <span style={{ color: "blue" }}>A Unique pre-IPO Offer</span> -
@@ -240,3 +243,13 @@ const Profile = styled.div`
     margin-right: 1rem;
   }
 `;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+// const mapDispatchToProps = (dispatch) => ({
+//   signOut: () => dispatch(signOutApi()),
+// });
+
+export default connect(mapStateToProps)(Message);

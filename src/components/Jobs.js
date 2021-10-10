@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import JobsList from "./JobsList";
-export default function Jobs(props) {
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUserAuth } from "../actions";
+function Jobs(props) {
+  // useEffect(() => {
+  //   props.getUserAuth();
+  // }, []);
   return (
     <Container>
+      {!props.user && <Redirect to="/" />}
       <Left>
         <LeftCont>
           <a>
@@ -232,3 +239,14 @@ const Right = styled.div`
     }
   }
 `;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => ({
+  // signOut: () => dispatch(signOutApi()),
+  getUserAuth: () => dispatch(getUserAuth()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
