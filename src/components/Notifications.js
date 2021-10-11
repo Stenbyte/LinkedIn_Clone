@@ -7,7 +7,7 @@ import NotificationList from "./NotificationList";
 function Notifications(props) {
   return (
     <Container>
-      {!props.user && <Redirect to="/" />}
+      {/* {!props.user && <Redirect to="/notifications" />} */}
       <Leftside>
         <Box1>
           <h4>Notifications</h4>
@@ -21,25 +21,6 @@ function Notifications(props) {
       <Main>
         {data.map((n) => (
           <NotificationList n={n} key={n.id} />
-          // <Main1
-          //   style={{
-          //     backgroundColor: n.color ? "#50ad2" : "white",
-          //   }}
-          // >
-          //   <img src="images/logo.png" alt="" />
-          //   <div>
-          //     <p className="para">
-          //       <span style={{ fontWeight: 600 }}>{n.name}</span> is promoting a
-          //       high priority <span style={{ fontWeight: 600 }}>{n.role}</span>{" "}
-          //       developer
-          //     </p>
-          //     <Button onClick={clickHandler}>Apply early {click}</Button>
-          //   </div>
-          //   <MainBox>
-          //     <p>{n.time}</p>
-          //     <img src="images/elipsis.png" alt="" />
-          //   </MainBox>
-          // </Main1>
         ))}
       </Main>
 

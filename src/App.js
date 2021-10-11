@@ -13,17 +13,7 @@ function App(props) {
   }, []);
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          {!props.user && <Redirect to="/" />}
-          <Header />
-
-          {/* <Route exact path="/home"></Route> */}
-        </Switch>
-      </div>
+      <div className="App">{props.user ? <Header /> : <Login />}</div>
     </Router>
   );
 }

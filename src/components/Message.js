@@ -6,7 +6,7 @@ function Message(props) {
   return (
     <React.Fragment>
       <Container>
-        {!props.user && <Redirect to="/" />}
+        {/* {!props.user && <Redirect to="/" />} */}
         <Box>
           <h1>
             <span style={{ color: "blue" }}>A Unique pre-IPO Offer</span> -

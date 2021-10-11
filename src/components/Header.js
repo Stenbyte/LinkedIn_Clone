@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { getUserAuth } from "../actions";
 import { signOutApi } from "../actions";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,10 +15,22 @@ import Home from "./Home";
 import Notifications from "./Notifications";
 import Message from "./Message";
 import Jobs from "./Jobs";
+import Login from "./Login";
 function Header(props) {
+  let history = useHistory();
+  let location = useLocation();
+  const [home, setHome] = useState(true);
+  const homeHandler = (bol) => {
+    setHome(bol);
+  };
+  useEffect(() => {
+    console.log(history, "history");
+    console.log(location);
+    console.log(props.user);
+  }, [history, location, props.user]);
+
   return (
-    <Router>
-      {!props.user && <Redirect to="/" />}
+    <React.Fragment>
       <Container>
         <Content>
           <Logo>
@@ -36,7 +48,11 @@ function Header(props) {
           </Search>
           <Nav>
             <NavListWrap>
-              <NavLink to="/home" style={{ textDecoration: "none" }}>
+              <NavLink
+                to="/home"
+                style={{ textDecoration: "none" }}
+                onClick={() => homeHandler(false)}
+              >
                 <NavList>
                   <a>
                     <img src="/images/nav-home.svg" alt="" />
@@ -45,7 +61,11 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink to="/network" style={{ textDecoration: "none" }}>
+              <NavLink
+                to="/network"
+                style={{ textDecoration: "none" }}
+                onClick={() => homeHandler(false)}
+              >
                 <NavList>
                   <a>
                     <img src="/images/nav-network.svg" alt="" />
@@ -54,7 +74,11 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink to="/jobs" style={{ textDecoration: "none" }}>
+              <NavLink
+                to="/jobs"
+                style={{ textDecoration: "none" }}
+                onClick={() => homeHandler(false)}
+              >
                 <NavList>
                   <a>
                     <img src="/images/nav-jobs.svg" alt="" />
@@ -63,7 +87,11 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink to="/message" style={{ textDecoration: "none" }}>
+              <NavLink
+                to="/message"
+                style={{ textDecoration: "none" }}
+                onClick={() => homeHandler(false)}
+              >
                 <NavList>
                   <a>
                     <img src="/images/nav-messaging.svg" alt="" />
@@ -72,7 +100,11 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink to="/notifications" style={{ textDecoration: "none" }}>
+              <NavLink
+                to="/notifications"
+                style={{ textDecoration: "none" }}
+                onClick={() => homeHandler(false)}
+              >
                 <NavList>
                   <a>
                     <img src="/images/nav-notifications.svg" alt="" />
@@ -94,7 +126,12 @@ function Header(props) {
                   </span>
                 </a>
 
-                <SignOut onClick={() => props.signOut()}>
+                <SignOut
+                  onClick={() => {
+                    props.signOut();
+                    history.push("/");
+                  }}
+                >
                   <a>Sign Out</a>
                 </SignOut>
               </User>
@@ -113,23 +150,26 @@ function Header(props) {
         </Content>
       </Container>
       <Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home">
           <Home />
         </Route>
-        <Route exact path="/network">
+        <Route path="/network">
           <Network />
         </Route>
-        <Route exact path="/jobs">
+        <Route path="/jobs">
           <Jobs />
         </Route>
-        <Route exact path="/message">
+        <Route path="/message">
           <Message />
         </Route>
-        <Route exact path="/notifications">
+        <Route path="/notifications">
           <Notifications />
         </Route>
       </Switch>
-    </Router>
+    </React.Fragment>
   );
 }
 const Container = styled.div`

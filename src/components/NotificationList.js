@@ -7,9 +7,10 @@ export default function NotificationList({ n }) {
   };
   return (
     <Main1
-    //   style={{
-    //     backgroundColor: n.color ? "#50ad2" : "white",
-    //   }}
+      //   style={{
+      //     backgroundColor: n.color ? "#50ad2" : "white",
+      //   }}
+      key={n.id}
     >
       <img src="images/logo.png" alt="" />
       <div>
