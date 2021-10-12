@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { getUserAuth } from "../actions";
 import { signOutApi } from "../actions";
-import { Redirect, useHistory, useLocation } from "react-router-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import Network from "./Network";
 import Home from "./Home";
 import Notifications from "./Notifications";
 import Message from "./Message";
 import Jobs from "./Jobs";
-import Login from "./Login";
+
 function Header(props) {
   let history = useHistory();
-  let location = useLocation();
-  const [home, setHome] = useState(true);
-  const homeHandler = (bol) => {
-    setHome(bol);
-  };
-  useEffect(() => {
-    console.log(history, "history");
-    console.log(location);
-    console.log(props.user);
-  }, [history, location, props.user]);
 
   return (
     <React.Fragment>
@@ -48,11 +32,7 @@ function Header(props) {
           </Search>
           <Nav>
             <NavListWrap>
-              <NavLink
-                to="/home"
-                style={{ textDecoration: "none" }}
-                onClick={() => homeHandler(false)}
-              >
+              <NavLink to="/home" style={{ textDecoration: "none" }}>
                 <NavList>
                   <a>
                     <img src="/images/nav-home.svg" alt="" />
@@ -61,11 +41,7 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink
-                to="/network"
-                style={{ textDecoration: "none" }}
-                onClick={() => homeHandler(false)}
-              >
+              <NavLink to="/network" style={{ textDecoration: "none" }}>
                 <NavList>
                   <a>
                     <img src="/images/nav-network.svg" alt="" />
@@ -74,11 +50,7 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink
-                to="/jobs"
-                style={{ textDecoration: "none" }}
-                onClick={() => homeHandler(false)}
-              >
+              <NavLink to="/jobs" style={{ textDecoration: "none" }}>
                 <NavList>
                   <a>
                     <img src="/images/nav-jobs.svg" alt="" />
@@ -87,11 +59,7 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink
-                to="/message"
-                style={{ textDecoration: "none" }}
-                onClick={() => homeHandler(false)}
-              >
+              <NavLink to="/message" style={{ textDecoration: "none" }}>
                 <NavList>
                   <a>
                     <img src="/images/nav-messaging.svg" alt="" />
@@ -100,11 +68,7 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <NavLink
-                to="/notifications"
-                style={{ textDecoration: "none" }}
-                onClick={() => homeHandler(false)}
-              >
+              <NavLink to="/notifications" style={{ textDecoration: "none" }}>
                 <NavList>
                   <a>
                     <img src="/images/nav-notifications.svg" alt="" />

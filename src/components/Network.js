@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 function Network(props) {
   const [open, setOpen] = useState(true);
+  const [num, setNum] = useState(0);
 
   const openHandler = () => {
     setOpen(!open);
@@ -18,44 +19,44 @@ function Network(props) {
         <a>
           <img src="/images/nav-network.svg" alt="" />
           <span>Connection</span>
-          <span>48</span>
+          <span>{num}</span>
         </a>
         {open && (
           <Body>
             <a>
               <img src="/images/contact.png" alt="" />
               <span>Contacts</span>
-              <span>48</span>
+              <span>11</span>
             </a>
             <a>
               <img src="/images/people.png" alt="" />
               <span>People | Follow</span>
-              <span>48</span>
+              <span style={{ color: num >= 1 ? "crimson" : "" }}>{num}</span>
             </a>
             <a>
               <img src="/images/meeting.png" alt="" />
               <span>Group</span>
-              <span>48</span>
+              <span>7</span>
             </a>
             <a>
               <img src="/images/event.png" alt="" />
               <span>Event</span>
-              <span>48</span>
+              <span>4</span>
             </a>
             <a>
               <img src="/images/computer.png" alt="" />
               <span>Pages</span>
-              <span>48</span>
+              <span>5</span>
             </a>
             <a>
               <img src="/images/news.png" alt="" />
               <span>NewsLetters</span>
-              <span>48</span>
+              <span>1</span>
             </a>
             <a>
               <img src="/images/hash.png" alt="" />
               <span> Hashtags</span>
-              <span>48</span>
+              <span>10</span>
             </a>
           </Body>
         )}
@@ -75,7 +76,7 @@ function Network(props) {
           <h1>People you may know</h1>
           <RightCont>
             {data.map((el) => (
-              <PeopleN el={el} key={el.id} />
+              <PeopleN el={el} key={el.id} setNum={setNum} num={num} />
             ))}
           </RightCont>
         </div>

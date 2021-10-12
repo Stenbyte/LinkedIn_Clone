@@ -4,6 +4,7 @@ import JobsList from "./JobsList";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUserAuth } from "../actions";
+import { jobs, jobsSearch } from "../data";
 function Jobs(props) {
   // useEffect(() => {
   //   props.getUserAuth();
@@ -60,43 +61,26 @@ function Jobs(props) {
       <Center>
         <CenterTop>
           <h1>Recent job searches</h1>
-          <CentTop>
-            <div>
-              <h4>frontend developer</h4>
-              <p>(3new)</p>
-            </div>
-            <a>Sweden • entry level • and 3 more</a>
-            <hr
-              style={{ opacity: 0.4, width: "700px", marginRight: "3.2rem" }}
-            />
-          </CentTop>
-          <CentTop>
-            <div>
-              <h4>frontend developer</h4>
-              <p>(3new)</p>
-            </div>
-            <a>Sweden • entry level • and 3 more</a>
-            <hr
-              style={{ opacity: 0.4, width: "700px", marginRight: "3.2rem" }}
-            />
-          </CentTop>
-          <CentTop>
-            <div>
-              <h4>frontend developer</h4>
-              <p>(3new)</p>
-            </div>
-            <a>Sweden • entry level • and 3 more</a>
-            <hr
-              style={{ opacity: 0.4, width: "700px", marginRight: "3.2rem" }}
-            />
-          </CentTop>
+          {jobsSearch.map((job) => (
+            <CentTop key={job.id}>
+              <div>
+                <h4>{job.name} developer</h4>
+                <p>({job.qty} new)</p>
+              </div>
+              <a>
+                {job.location} • {job.level} level • and 3 more
+              </a>
+              <hr
+                style={{ opacity: 0.4, width: "700px", marginRight: "3.2rem" }}
+              />
+            </CentTop>
+          ))}
         </CenterTop>
         <CenterBottom>
           <h1>Jobs you are top applicant</h1>
-          <JobsList />
-          <JobsList />
-          <JobsList />
-          <JobsList />
+          {jobs.map((job) => (
+            <JobsList job={job} key={job.id} />
+          ))}
         </CenterBottom>
       </Center>
       <Right>
@@ -182,28 +166,6 @@ const CenterBottom = styled.div`
   background-color: white;
   border-radius: 10px;
   padding: 1rem;
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 150px;
-    div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 30px;
-    }
-    .logo {
-      width: 60px;
-      height: 60px;
-      margin-right: -30rem;
-    }
-    img {
-      width: 30px;
-      height: 30px;
-      margin-right: 1rem;
-    }
-  }
 `;
 const Right = styled.div`
   flex: 1;

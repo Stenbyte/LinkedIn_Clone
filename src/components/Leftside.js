@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 function Leftside(props) {
+  let history = useHistory();
   return (
     <Container>
       <ArtCard>
@@ -26,7 +28,12 @@ function Leftside(props) {
           <a>
             <div>
               <span>Connections</span>
-              <span>Grow your network</span>
+              <span
+                onClick={() => history.push("/network")}
+                style={{ cursor: "default" }}
+              >
+                Grow your network
+              </span>
             </div>
             <img src="/images/widget-icon.svg" alt="" />
           </a>

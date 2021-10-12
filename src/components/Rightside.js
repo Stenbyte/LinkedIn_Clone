@@ -1,12 +1,21 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 export default function Rightside(props) {
+  const [btn, setBtn] = useState(false);
+  const [btn1, setBtn1] = useState(false);
+  const btnHandler = () => {
+    setBtn(!btn);
+  };
+  const btnHandler1 = () => {
+    setBtn1(!btn1);
+  };
   return (
     <Container>
       <FollowCard>
         <Title>
           <h2>Add to your feed</h2>
-          <img src="/images/feed-icon.svg" alt="" />
+
+          <img src="/images/feed-icon.svg" alt="Info" />
         </Title>
 
         <FeedList>
@@ -16,7 +25,10 @@ export default function Rightside(props) {
             </a>
             <div>
               <span>#Linkedin</span>
-              <button>Follow</button>
+              <button onClick={btnHandler}>
+                {" "}
+                {btn ? "Followed" : "Follow"}
+              </button>
             </div>
           </li>
           <li>
@@ -25,7 +37,9 @@ export default function Rightside(props) {
             </a>
             <div>
               <span>#Video</span>
-              <button>Follow</button>
+              <button onClick={btnHandler1}>
+                {btn1 ? "Followed" : "Follow"}
+              </button>
             </div>
           </li>
         </FeedList>

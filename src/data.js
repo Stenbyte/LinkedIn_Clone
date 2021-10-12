@@ -80,3 +80,63 @@ export const Network = [
     con: "Connect",
   },
 ];
+export const jobs = [
+  {
+    id: 1,
+    name: "Frontend Developer",
+    company: "Company A",
+    location: "Helsinki",
+    time: "1 day ago",
+  },
+  {
+    id: 2,
+    name: "Backend Developer",
+    company: "Company B",
+    location: "Stockholm",
+    time: "3 days ago",
+  },
+  {
+    id: 3,
+    name: "Fulstack Developer",
+    company: "Company C",
+    location: "Milan",
+    time: "4 days ago",
+  },
+  {
+    id: 4,
+    name: "Junior Software Engineer",
+    company: "Company D",
+    location: "New York",
+    time: "6 days ago",
+  },
+  {
+    id: 5,
+    name: "Senior Frontend Developer",
+    company: "Company F",
+    location: "Helsinki",
+    time: "1 week ago",
+  },
+];
+export const jobsSearch = [
+  {
+    id: 1,
+    name: "frontend",
+    qty: 3,
+    location: "Sweden",
+    level: "entry",
+  },
+  {
+    id: 2,
+    name: "backend",
+    qty: 2,
+    location: "Finland",
+    level: "entry",
+  },
+  {
+    id: 3,
+    name: "fullstack",
+    qty: 5,
+    location: "Italy",
+    level: "entry",
+  },
+];

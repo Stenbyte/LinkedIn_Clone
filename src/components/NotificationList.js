@@ -7,9 +7,9 @@ export default function NotificationList({ n }) {
   };
   return (
     <Main1
-      //   style={{
-      //     backgroundColor: n.color ? "#50ad2" : "white",
-      //   }}
+      style={{
+        backgroundColor: click === "Apply" ? "#d1c4e9" : "white",
+      }}
       key={n.id}
     >
       <img src="images/logo.png" alt="" />
@@ -29,7 +29,7 @@ export default function NotificationList({ n }) {
 }
 const Main1 = styled.div`
   display: flex;
-  background-color: white;
+  /* background-color: #50ad2; */
   height: 150px;
   align-items: center;
   justify-content: space-between;

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function PeopleN({ el }) {
+export default function PeopleN({ el, setNum, num }) {
   const [btn, setBtn] = useState(el.con);
 
   const btnHandler = () => {
     btn === "Connect" ? setBtn("Connected") : setBtn("Connect");
+    btn === "Connect" ? setNum(num + 1) : setNum(num - 1);
   };
 
   return (
