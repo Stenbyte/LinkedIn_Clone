@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signOutApi } from "../actions";
@@ -9,9 +9,11 @@ import Home from "./Home";
 import Notifications from "./Notifications";
 import Message from "./Message";
 import Jobs from "./Jobs";
+import HeaderProfile from "./HeaderProfile";
 
 function Header(props) {
-  let history = useHistory();
+  // let history = useHistory();
+  const [open, setOpen] = useState(false);
 
   return (
     <React.Fragment>
@@ -77,7 +79,7 @@ function Header(props) {
                 </NavList>
               </NavLink>
 
-              <User>
+              <User onClick={() => setOpen(!open)}>
                 <a>
                   {props.user && props.user.photoURL ? (
                     <img src={props.user.photoURL} alt="" />
@@ -89,15 +91,11 @@ function Header(props) {
                     <img src="/images/down-icon.svg" alt="" />
                   </span>
                 </a>
-
-                <SignOut
-                  onClick={() => {
-                    props.signOut();
-                    history.push("/");
-                  }}
-                >
-                  <a>Sign Out</a>
-                </SignOut>
+                {open && (
+                  <ProfileH>
+                    <HeaderProfile />
+                  </ProfileH>
+                )}
               </User>
 
               <Work>
@@ -267,7 +265,17 @@ const NavList = styled.li`
     }
   }
 `;
-
+const ProfileH = styled.div`
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 250px;
+  height: 360px;
+  border-radius: 5% 0 5% 5%;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+`;
 const SignOut = styled.div`
   position: absolute;
   top: 45px;
