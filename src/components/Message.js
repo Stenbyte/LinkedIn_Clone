@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import MessageBoxx from "./MessageBoxx";
+import { Message as data } from "../data";
 function Message(props) {
+  const [person, setPerson] = useState(data[0]);
+  const idHandler = (id) => {
+    let data1 = data.find(({ _id }) => _id === id);
+    setPerson(data1);
+  };
   return (
     <React.Fragment>
       <Container>
@@ -32,47 +39,31 @@ function Message(props) {
                   <img src="/images/search-icon.svg" alt="" />
                 </SearchIcon>
               </Search>
-              <MessageBox>
-                <img src="/images/user.svg" alt="" />
-                <div>
-                  <h6>John Doe</h6>
-                  <p>sponsored •</p>
-                </div>
-                <p>Oct 1</p>
-              </MessageBox>
+              {data.map((m) => (
+                <MessageBoxx m={m} key={m._id} idHandler={idHandler} />
+              ))}
+
               <hr style={{ opacity: 0.4, marginRight: "1rem" }} />
             </Left1>
             <Left2>
               <Left2Top>
                 <div>
-                  <h4>User Name</h4>
-                  <p>Description</p>
+                  <h4>{person.name}</h4>
+                  <p>{person.description}</p>
                 </div>
                 <img src="images/elipsis.png" alt="" />
               </Left2Top>
               <Left2M>
-                <h5>Info</h5>
+                <h5>{person.info}</h5>
                 <Button>Read more</Button>
                 <hr style={{ opacity: 0.4 }} />
               </Left2M>
               <Left2D>
                 <Profile>
                   <img src="images/user.svg" alt="" />
-                  <h6>User Name</h6>
+                  <h6>{person.name}</h6>
                 </Profile>
-                <div className="last">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. <br /> <br />
-                  It has survived not only five centuries, but also the leap
-                  into electronic typesetting, remaining essentially
-                  unchanged.It was popularised in the 1960s with the release of
-                  Letraset sheets containing Lorem Ipsum passages, and more
-                  recently with desktop publishing software like Aldus PageMaker
-                  including versions of Lorem Ipsum.
-                </div>
+                <div className="last">{person.text}</div>
               </Left2D>
             </Left2>
           </Left>
@@ -127,21 +118,6 @@ const Left1Top = styled.div`
   img {
     width: 25px;
     padding: 0.2rem;
-  }
-`;
-const MessageBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  /* height: 50px; */
-  background-color: #eef3f8;
-  padding: 1rem;
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: white;
   }
 `;
 

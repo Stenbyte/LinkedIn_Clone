@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { signOutApi } from "../actions";
 function HeaderProfile(props) {
   let history = useHistory();
-  console.log(props.user);
+
   return (
     <Con>
       <ProTop>
