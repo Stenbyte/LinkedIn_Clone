@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signOutApi } from "../actions";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Switch, Route, NavLink } from "react-router-dom";
 import Network from "./Network";
 import Home from "./Home";
@@ -276,6 +276,7 @@ const ProfileH = styled.div`
   background-color: white;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 `;
+
 const SignOut = styled.div`
   position: absolute;
   top: 45px;

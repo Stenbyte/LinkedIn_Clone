@@ -1,11 +1,10 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import Login from "./components/Login";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
 import { getUserAuth } from "./actions";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 function App(props) {
   useEffect(() => {

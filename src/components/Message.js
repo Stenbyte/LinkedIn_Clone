@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import MessageBoxx from "./MessageBoxx";
 import { Message as data } from "../data";

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signInApi } from "../actions";
-import { Redirect, useHistory } from "react-router-dom";
 
 function Login(props) {
   return (

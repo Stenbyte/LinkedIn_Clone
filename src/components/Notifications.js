@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Notification as data } from "../data";
-import { Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import NotificationList from "./NotificationList";
 function Notifications(props) {
@@ -88,7 +88,6 @@ const Main1 = styled.div`
   & > div {
     .para {
       padding: 0.5rem;
-      /* overflow-wrap: break-word; */
 
       width: 400px;
     }

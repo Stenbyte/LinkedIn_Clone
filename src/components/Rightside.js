@@ -25,10 +25,7 @@ export default function Rightside(props) {
             </a>
             <div>
               <span>#Linkedin</span>
-              <button onClick={btnHandler}>
-                {" "}
-                {btn ? "Followed" : "Follow"}
-              </button>
+              <button onClick={btnHandler}> {btn ? "🆗" : "Follow"}</button>
             </div>
           </li>
           <li>
@@ -37,9 +34,7 @@ export default function Rightside(props) {
             </a>
             <div>
               <span>#Video</span>
-              <button onClick={btnHandler1}>
-                {btn1 ? "Followed" : "Follow"}
-              </button>
+              <button onClick={btnHandler1}>{btn1 ? "🆗" : "Follow"}</button>
             </div>
           </li>
         </FeedList>
