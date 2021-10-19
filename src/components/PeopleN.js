@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function PeopleN({ el, setNum, num }) {
   const [btn, setBtn] = useState(el.con);
@@ -12,10 +13,12 @@ export default function PeopleN({ el, setNum, num }) {
   return (
     <React.Fragment>
       <Container key={el.id}>
-        <ImgContainer>
-          <img src={el.backImg} alt="" className="sizze" />
-          <img src={el.proImg} alt="" className="sizze1" />
-        </ImgContainer>
+        <Link to={`network/:${el.id}`}>
+          <ImgContainer>
+            <img src={el.backImg} alt="" className="sizze" />
+            <img src={el.proImg} alt="" className="sizze1" />
+          </ImgContainer>
+        </Link>
         <Profile>
           <h3>{el.name} </h3>
           <h4>{el.role} Developer</h4>
@@ -49,10 +52,12 @@ const ImgContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  object-fit: cover;
   .sizze {
-    width: 250px;
+    width: 100%;
     height: 100px;
-    border-radius: 10px;
+    border-radius: 9px 9px 0 0;
+    object-fit: cover;
   }
   .sizze1 {
     position: absolute;

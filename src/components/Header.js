@@ -10,6 +10,7 @@ import Notifications from "./Notifications";
 import Message from "./Message";
 import Jobs from "./Jobs";
 import HeaderProfile from "./HeaderProfile";
+import NetworkProfile from "./NetworkProfile";
 
 function Header(props) {
   // let history = useHistory();
@@ -188,7 +189,7 @@ function Header(props) {
         <Route path="/home">
           <Home />
         </Route>
-        <Route path="/network">
+        <Route exact path="/network">
           <Network />
         </Route>
         <Route path="/jobs">
@@ -199,6 +200,9 @@ function Header(props) {
         </Route>
         <Route path="/notifications">
           <Notifications />
+        </Route>
+        <Route exact path="/network/:id">
+          <NetworkProfile />
         </Route>
       </Switch>
     </React.Fragment>
