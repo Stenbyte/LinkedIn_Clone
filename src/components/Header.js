@@ -14,6 +14,7 @@ import HeaderProfile from "./HeaderProfile";
 function Header(props) {
   // let history = useHistory();
   const [open, setOpen] = useState(false);
+  const [work, setWork] = useState(false);
 
   return (
     <React.Fragment>
@@ -98,7 +99,7 @@ function Header(props) {
                 )}
               </User>
 
-              <Work>
+              <Work onClick={() => setWork(!work)}>
                 <a>
                   <img src="/images/nav-work.svg" alt="" />
                   <span>
@@ -110,6 +111,75 @@ function Header(props) {
             </NavListWrap>
           </Nav>
         </Content>
+        {work && (
+          <WorkM onClick={() => setWork(!work)}>
+            <ModalW className={!work && "WorkModal"}>
+              <h1 onClick={() => setWork(!work)}>X</h1>
+              <ModalW1>
+                <h1>Visit More LinkedIn Products</h1>
+                <hr style={{ margin: "0 -1rem 0.5rem -1rem" }} />
+                <ModalW11>
+                  <div>
+                    <img src="images/audience.png" alt="" />
+                    <span>Insights</span>
+                  </div>
+                  <div>
+                    <img src="images/jobss.png" alt="" />
+                    <span>Post a job</span>
+                  </div>
+                  <div>
+                    <img src="images/ads.png" alt="" />
+                    <span>Advertise</span>
+                  </div>
+                  <div>
+                    <img src="images/interview.png" alt="" />
+                    <span>Find Leads</span>
+                  </div>
+                  <div>
+                    <img src="images/meeting.png" alt="" />
+                    <span>Groups</span>
+                  </div>
+                  <div>
+                    <img src="images/serv.png" alt="" />
+                    <span style={{ textAlign: "center" }}>
+                      Services <br /> Marketplace
+                    </span>
+                  </div>
+                  <div>
+                    <img src="images/salary.png" alt="" />
+                    <span>Salary</span>
+                  </div>
+                </ModalW11>
+              </ModalW1>
+              <ModalW2>
+                <h1>LinkedIn Business</h1>
+                <hr style={{ margin: "-0.5rem -1rem 0.3rem -1rem" }} />
+                <ModalW22>
+                  <div>
+                    <h2>Talent Solutions</h2>
+                    <p>Find, attract and recruit talent</p>
+                  </div>
+                  <div>
+                    <h2>Sales Solutions</h2>
+                    <p>Unlock sales opportunities</p>
+                  </div>
+                  <div>
+                    <h2>Post a job for free</h2>
+                    <p>Get your job in front of quality candidates</p>
+                  </div>
+                  <div>
+                    <h2>Marketing Solutions</h2>
+                    <p>Acquire customers and grow your business</p>
+                  </div>
+                  <div>
+                    <h2>Learning Solutions</h2>
+                    <p>Develop talent across your organization</p>
+                  </div>
+                </ModalW22>
+              </ModalW2>
+            </ModalW>
+          </WorkM>
+        )}
       </Container>
       <Switch>
         <Route exact path="/">
@@ -267,6 +337,7 @@ const NavList = styled.li`
 `;
 const ProfileH = styled.div`
   position: absolute;
+  z-index: 100;
   top: 60px;
   right: 0;
   width: 250px;
@@ -320,6 +391,88 @@ const User = styled(NavList)`
 const Work = styled(User)`
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 `;
+
+const WorkM = styled.div`
+  position: absolute;
+  top: 53px;
+  width: 100%;
+  margin: 0 -1.5rem;
+  transition: all 2s ease;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+const ModalW = styled.div`
+  background-color: white;
+  height: 100vh;
+  width: 30vw;
+  position: absolute;
+  right: 3rem;
+  padding: 1rem;
+  display: flex;
+
+  flex-direction: column;
+  transition: all 1s ease;
+  > h1 {
+    text-align: right;
+    font-weight: 400;
+    width: 30px;
+    margin-left: 25rem;
+  }
+  &.WorkModal {
+    right: -28rem;
+  }
+`;
+const ModalW1 = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 1rem;
+  height: 250px;
+  margin-top: 0.4rem;
+  h1 {
+    font-weight: 400;
+    text-align: left;
+    padding-bottom: 2rem;
+  }
+`;
+const ModalW11 = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 180px;
+  div {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    padding: 0.4rem;
+    width: 70px;
+    height: 50px;
+    img {
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      width: 32px;
+      padding: 0.5rem;
+    }
+    span {
+      margin-top: 0.2rem;
+    }
+  }
+`;
+const ModalW2 = styled(ModalW1)`
+  height: 260px;
+`;
+const ModalW22 = styled.div`
+  > div {
+    line-height: 1.4;
+    > h2 {
+      font-weight: 400;
+    }
+    > p {
+      font-weight: 300;
+    }
+  }
+`;
+// End
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
