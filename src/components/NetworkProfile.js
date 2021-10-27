@@ -16,7 +16,7 @@ export default function NetworkProfile() {
           <img src={user.proImg} alt="" className="sizze1" />
         </ImgContainer>
         <Second>
-          <img src="images/linkedin.png" alt="" />
+          <img src="/images/linkedin.png" alt="" />
 
           <Sec>
             <Sec1>

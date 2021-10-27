@@ -17,6 +17,26 @@ function Login(props) {
         </div>
       </Nav>
       <Section>
+        <div className="intro">
+          Hi, welcome to the desktop LinkedIn clone app. Project was build by
+          using <span>ReactJs</span>, <span>Styled Components</span>,{" "}
+          <span>Firebase</span>, <span>Redux</span>, and <span>Router</span>.
+          <br />
+          Functionality <span>tips</span>:
+          <br /> • <span>Log in</span> is connected to Firebase Authentication
+          <br /> • <span>Navigation</span> bar is fully <span>functional</span>
+          <br /> • <span>User</span> can create a <span>post</span>, and upload{" "}
+          <span>image</span> or <span>video</span>(it is connected to Firebase)
+          <br /> • My Network, Jobs, Messaging, and Notifications{" "}
+          <span>components</span> are using <span>dummy data</span>
+          <br />• My Network component <span>redirects</span> to user{" "}
+          <span>profile page</span> <br />• All of the <span>buttons</span> are
+          clickable
+          <br />
+          <span style={{ textDecoration: "underline" }}>
+            Sign In, and enjoy
+          </span>
+        </div>
         <Hero>
           <h1>Welcome to your professional community</h1>
           <img src="/images/login-hero.svg" alt="" />
@@ -104,6 +124,23 @@ const Section = styled.section`
   max-width: 1128px;
   align-items: center;
   margin: auto;
+  .intro {
+    position: absolute;
+    top: 5rem;
+    right: -7vw;
+    background-color: white;
+    z-index: 10;
+    width: 35vw;
+    min-height: 35vh;
+    padding: 1rem;
+    line-height: 1.5;
+    border-radius: 10px;
+    font-weight: 300;
+    font-size: 1.2rem;
+    span {
+      font-weight: 400;
+    }
+  }
   @media (max-width: 768px) {
     margin: auto;
     min-height: 0px;
